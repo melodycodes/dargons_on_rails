@@ -1,0 +1,15 @@
+<h1>Create a New Character!</h1>
+<div class="row">
+  <div class="col-md-12">
+    <%= bootstrap_form_for(@character) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.text_field :name%>
+      <%= f.text_field :one_uniq_thing, label: "One Unique Thing" %>
+      <%= f.select :level, options_for_select(1..10), label: "Starting Level"%>
+      <% ability_scores.each do |ability| %>
+        <%= f.select ability.to_sym, options_for_select(1..10) %>
+      <% end %>
+      <%= f.primary "Create" %>
+    <% end %>
+  </div>
+</div>

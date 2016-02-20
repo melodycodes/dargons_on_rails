@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -36,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development do
