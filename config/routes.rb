@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'pages#index'
-  resources :characters
+  resources :characters do
+    member do
+      patch 'create_two'
+      patch 'create_three'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

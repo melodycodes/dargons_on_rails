@@ -1,0 +1,11 @@
+<h1>Create a New Character!</h1>
+<h2>What makes <%= @character.name %> unique?</h2>
+<div class="row">
+  <div class="col-md-12">
+    <%= bootstrap_form_for(@character, url: { action: 'create_two', id: @character.id}) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.text_field :one_uniq_thing, label: "One Unique Thing" %>
+      <%= f.primary "Continue" %>
+    <% end %>
+  </div>
+</div>

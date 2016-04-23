@@ -1,1 +1,10 @@
-<h1>Showing <%= @character.name %>!</h1>
+<h1><%= @character.name %></h1>
+<div class="row">
+  <div class="col-sm-6">Level: <%= @character.level %></div>
+  <div class="col-sm-6">One Unique Thing: "<%= @character.one_uniq_thing %>"</div>
+</div>
+<div class="row">
+  <% ability_scores.each do |ab| %>
+  <div class="col-sm-6"><%= ab.to_s %>: <%= @character.send(ab) %></div>
+  <% end %>
+</div>
