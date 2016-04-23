@@ -14,7 +14,7 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(char_params)
     if @character.save
-      render 'create_two'
+      redirect_to character_step_path(@character, :add_one_uniq_thing)
     else
       render 'new'
     end
@@ -24,26 +24,6 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
     if @character.update_attributes(char_params)
       flash[:success] = "Character updated"
-    end
-  end
-
-  def create_two
-    @character = Character.find(params[:id])
-    if @character.update_attributes(char_params)
-      flash[:success] = "Character updated"
-      render 'create_three'
-    else
-      render 'new'
-    end
-  end
-
-  def create_three
-    @character = Character.find(params[:id])
-    if @character.update_attributes(char_params)
-      flash[:success] = "Character updated"
-      redirect_to @character
-    else
-      render 'new'
     end
   end
 

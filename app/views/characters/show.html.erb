@@ -1,10 +1,11 @@
+<% one_uniq = @character.one_uniq_thing %>
 <h1><%= @character.name %></h1>
 <div class="row">
-  <div class="col-sm-6">Level: <%= @character.level %></div>
-  <div class="col-sm-6">One Unique Thing: "<%= @character.one_uniq_thing %>"</div>
+  <div class="col-sm-6">Level: <%= @character.level || "N/A" %></div>
+  <div class="col-sm-6">One Unique Thing: <%= one_uniq.nil? ? "N/A" : "\"#{one_uniq}\""%></div>
 </div>
 <div class="row">
   <% ability_scores.each do |ab| %>
-  <div class="col-sm-6"><%= ab.to_s %>: <%= @character.send(ab) %></div>
+  <div class="col-sm-6"><%= ab.to_s.titleize %>: <%= @character.send(ab) || "N/A"%></div>
   <% end %>
 </div>

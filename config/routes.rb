@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   resources :characters do
-    member do
-      patch 'create_two'
-      patch 'create_three'
-    end
+    resources :steps, only: [:show, :update], controller: 'characters/steps'
   end
 
   # Example of regular route:
