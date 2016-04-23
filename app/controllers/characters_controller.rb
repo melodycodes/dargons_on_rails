@@ -10,7 +10,7 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(char_params)
     if @character.save
-
+      redirect_to @character
     else
       render 'new'
     end
