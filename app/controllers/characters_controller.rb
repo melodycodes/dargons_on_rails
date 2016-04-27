@@ -5,6 +5,7 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.paginate(page: params[:page])
+    set_character_classes
   end
 
   def show
@@ -35,5 +36,9 @@ class CharactersController < ApplicationController
 
   def ability_scores
     CharactersController.helpers.ability_scores
+  end
+
+  def set_character_classes
+    @character_classes ||= YAML.load_stream(File.open("#{Rails.root}/lib/character_class.yaml"))
   end
 end
