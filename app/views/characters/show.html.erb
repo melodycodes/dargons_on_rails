@@ -1,11 +1,16 @@
-<% one_uniq = @character.one_uniq_thing %>
 <h1><%= @character.name %></h1>
 <div class="row">
-  <div class="col-sm-6">Level: <%= @character.level || "N/A" %></div>
-  <div class="col-sm-6">One Unique Thing: <%= one_uniq.nil? ? "N/A" : "\"#{one_uniq}\""%></div>
+  <div class="col-sm-12">Class: <%= attribute_or_default(:character_class) %></div>
+  <div class="col-sm-12">Level: <%= attribute_or_default(:level) %></div>
+  <div class="col-sm-12">One Unique Thing: <%= one_uniq%></div>
+  <div class="col-sm-12">Starting HP: <%= attribute_or_default(:hit_points) %></div>
+  <div class="col-sm-12">Armor Class: <%= attribute_or_default(:armor_class) %></div>
+  <div class="col-sm-12">Physical Defense: <%= attribute_or_default(:physical_def) %></div>
+  <div class="col-sm-12">Mental Defense: <%= attribute_or_default(:mental_def) %></div>
+  <div class="col-sm-12">Initiative Bonus: <%= attribute_or_default(:initiative_bonus) %></div>
 </div>
 <div class="row">
   <% ability_scores.each do |ab| %>
-  <div class="col-sm-6"><%= ab.to_s.titleize %>: <%= @character.send(ab) || "N/A"%></div>
+  <div class="col-sm-12"><%= ab.to_s.titleize %>: <%= @character.send(ab) || "N/A"%></div>
   <% end %>
 </div>

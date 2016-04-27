@@ -1,15 +1,15 @@
 class CharactersController < ApplicationController
+  before_filter :load_character, only: [:show, :update]
+
   def new
     @character = Character.new
   end
 
   def index
     @characters = Character.paginate(page: params[:page])
-    set_character_classes
   end
 
   def show
-    @character = Character.find(params[:id])
   end
 
   def create
@@ -22,13 +22,16 @@ class CharactersController < ApplicationController
   end
 
   def update
-    @character = Character.find(params[:id])
     if @character.update_attributes(char_params)
       flash[:success] = "Character updated"
     end
   end
 
   private
+
+  def load_character
+    @character = Character.find(params[:id])
+  end
 
   def char_params
     params.require(:character).permit(:name, :level, :one_uniq_thing, ability_scores)
@@ -38,7 +41,4 @@ class CharactersController < ApplicationController
     CharactersController.helpers.ability_scores
   end
 
-  def set_character_classes
-    @character_classes ||= YAML.load_stream(File.open("#{Rails.root}/lib/character_class.yaml"))
-  end
 end

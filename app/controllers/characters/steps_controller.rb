@@ -1,10 +1,11 @@
 class Characters::StepsController < ApplicationController
   include Wicked::Wizard
 
-  steps :add_one_uniq_thing, :add_ability_scores
+  steps :add_one_uniq_thing, :choose_class, :add_ability_scores
 
   def show
     @character = Character.find(params[:character_id])
+    @character_classes ||= CharactersController.helpers.all_character_classes
     render_wizard
   end
 
@@ -21,7 +22,7 @@ class Characters::StepsController < ApplicationController
   private
 
   def char_params
-    params.require(:character).permit(:name, :level, :one_uniq_thing, ability_scores)
+    params.require(:character).permit(:name, :level, :one_uniq_thing, ability_scores, :character_class)
   end
 
   def ability_scores
